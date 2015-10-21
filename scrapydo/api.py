@@ -11,6 +11,12 @@ from scrapy.utils.spider import DefaultSpider
 
 DEFAULT_TIMEOUT = 3600
 
+default_settings = {
+    'DOWNLOAD_TIMEOUT': 30,
+    'RETRY_TIMES': 1,
+    'TELNETCONSOLE_ENABLED': False,
+    'LOG_LEVEL': 'ERROR',
+}
 
 setup = crochet.setup
 
@@ -146,6 +152,8 @@ def _fetch_in_reactor(url, spider_cls=DefaultSpider, **kwargs):
     return _run_spider_in_reactor(spider_cls, **kwargs)
 
 
+
+
 def _crawl_in_reactor(url, callback, spider_cls=DefaultSpider, **kwargs):
     """Crawls given URL with given callback.
 
@@ -195,6 +203,7 @@ def _run_spider_in_reactor(spider_cls, capture_items=True, return_crawler=False,
     """
     settings = settings or {}
     crawler_settings = get_project_settings().copy()
+    crawler_settings.setdict(default_settings)
     crawler_settings.setdict(settings)
     log_scrapy_info(crawler_settings)
     crawler = Crawler(spider_cls, crawler_settings)
