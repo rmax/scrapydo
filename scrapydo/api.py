@@ -139,7 +139,8 @@ def _fetch_in_reactor(url, spider_cls=DefaultSpider, **kwargs):
     """
     def parse(self, response):
         self.response = response
-    req = Request(url, dont_filter=True)
+    req = Request(url) if isinstance(url, basestring) else url
+    req.dont_filter = True
     req.meta['handle_httpstatus_all'] = True
     spider_cls = override_start_requests(spider_cls, [req], parse=parse)
     return _run_spider_in_reactor(spider_cls, **kwargs)
