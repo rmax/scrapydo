@@ -187,7 +187,7 @@ def _run_spider_in_reactor(spider_cls, capture_items=True, return_crawler=False,
     Returns
     -------
     out : crochet.EventualResult
-        If ``return_items`` is ``True``, returns scraped items. If
+        If ``capture_items`` is ``True``, returns scraped items. If
         ``return_crawler`` is ``True``, returns the crawler instance.
 
     """
