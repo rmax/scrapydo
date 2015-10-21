@@ -48,7 +48,8 @@ def fetch(url, **kwargs):
     timeout = kwargs.pop('timeout', DEFAULT_TIMEOUT)
     kwargs['return_crawler'] = True
     crawler = wait_for(timeout, _fetch_in_reactor, url, **kwargs)
-    return crawler.spider.response
+    if hasattr(crawler.spider, 'response'):
+        return crawler.spider.response
 
 
 def crawl(url, callback, **kwargs):
