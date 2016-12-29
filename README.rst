@@ -49,7 +49,7 @@ Example:
     # do stuff with items ...
 
     # Run an existing spider class.
-    items = scrapydo.run_spider('http://example.com')
+    items = scrapydo.run_spider(MySpider)
     # do stuff with items ...
 
 
@@ -65,7 +65,7 @@ Available Functions
 ``scrapydo.crawl(url, callback, spider_cls=DefaultSpider, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT)``
     Crawls an URL with given callback and returns the scraped items.
 
-``scrapydo.run_spider(spider_cls, spider_cls, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT)``
+``scrapydo.run_spider(spider_cls, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT)``
     Runs a spider and returns the scraped items.
 
 ``highlight(code, lexer='html', formatter='html', output_wrapper=None)``
