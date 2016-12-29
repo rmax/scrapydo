@@ -49,7 +49,7 @@ Example:
     # do stuff with items ...
 
     # Run an existing spider class.
-    items = scrapydo.runspider('http://example.com')
+    items = scrapydo.run_spider('http://example.com')
     # do stuff with items ...
 
 
