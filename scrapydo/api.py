@@ -169,7 +169,7 @@ def _crawl_in_reactor(url, callback, spider_cls=DefaultSpider, **kwargs):
 
 @crochet.run_in_reactor
 def _run_spider_in_reactor(spider_cls, capture_items=True, return_crawler=False,
-                           settings=None):
+                           settings=None, **kwargs):
     """Runs given spider inside the twisted reactdor.
 
     Parameters
@@ -196,7 +196,7 @@ def _run_spider_in_reactor(spider_cls, capture_items=True, return_crawler=False,
     crawler_settings.setdict(settings)
     log_scrapy_info(crawler_settings)
     crawler = Crawler(spider_cls, crawler_settings)
-    d = crawler.crawl()
+    d = crawler.crawl(**kwargs)
     if capture_items:
         crawler.items = _OutputItems()
         crawler.signals.connect(crawler.items.append, signal=signals.item_scraped)

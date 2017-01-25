@@ -1,5 +1,7 @@
+import unittest
+
 from unittest import TestCase
-from urlparse import urlparse
+from urllib.parse import urlparse
 
 from scrapy.http import Request
 from scrapy.spiders import Spider
@@ -54,3 +56,6 @@ class APITest(SiteTest, TestCase):
             {'path': '/text'},
             {'path': '/html'},
         ])
+
+if __name__ == '__main__':
+    unittest.main()

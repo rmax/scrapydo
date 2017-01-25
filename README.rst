@@ -50,6 +50,11 @@ Example:
 
     # Run an existing spider class.
     items = scrapydo.run_spider(MySpider)
+
+    # Run an existing spider class with custom arguments.
+    formdata={'user': 'john', 'pass': 'secret'}
+    items = scrapydo.run_spider(MySpider(**formdata), **formdata)
+
     # do stuff with items ...
 
 
