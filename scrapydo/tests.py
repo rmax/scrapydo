@@ -1,7 +1,8 @@
-import unittest
+from __future__ import unicode_literals
+
+from six.moves.urllib.parse import urlparse
 
 from unittest import TestCase
-from urllib.parse import urlparse
 
 from scrapy.http import Request
 from scrapy.spiders import Spider
@@ -39,23 +40,17 @@ class APITest(SiteTest, TestCase):
 
     def test_fetch(self):
         response = scrapydo.fetch(self.url('/text'))
-        self.assertEqual(response.body, 'Works')
+        self.assertEqual(response.text, 'Works')
 
     def test_crawl(self):
         def callback(response):
-            return {'body': response.body}
+            return {'text': response.text}
         items = scrapydo.crawl(self.url('/redirect'), callback)
         self.assertEqual(items, [
-            {'body': 'Redirected here'},
+            {'text': 'Redirected here'},
         ])
 
     def test_run_spider(self):
         TestSpider = make_test_spider(self.url)
         items = scrapydo.run_spider(TestSpider)
-        self.assertEqual(items, [
-            {'path': '/text'},
-            {'path': '/html'},
-        ])
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(set(it['path'] for it in items), {'/text', '/html'})
