@@ -33,20 +33,29 @@ Example:
     import scrapydo
     scrapydo.setup()
 
+    scrapydo.default_settings.update({
+        'LOG_LEVEL': 'DEBUG',
+        'CLOSESPIDER_PAGECOUNT': 10,
+    })
+
+    # Enable logging display
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+
     # Fetch a single URL.
     response = scrapydo.fetch("http://example.com")
-    # do stuff with response ...
-
 
     # Crawl an URL with given callback.
-    def callback(response):
+    def parse_page(response):
         yield {
             'title': response.css('title').extract(),
             'url': response.url,
         }
+        for href in response.css('a::attr(href)'):
+            url = response.urljoin(href)
+            yield Request(url, callback=parse_page)
 
     items = scrapydo.crawl('http://example.com', callback)
-    # do stuff with items ...
 
     # Run an existing spider class.
     items = scrapydo.run_spider(MySpider)
@@ -54,8 +63,6 @@ Example:
     # Run an existing spider class with custom arguments.
     formdata={'user': 'john', 'pass': 'secret'}
     items = scrapydo.run_spider(MySpider(**formdata), **formdata)
-
-    # do stuff with items ...
 
 
 Available Functions
