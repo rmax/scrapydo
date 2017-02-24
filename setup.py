@@ -6,7 +6,7 @@ LONG_DESC = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
 
 setup(
     name='scrapydo',
-    version='0.2.1',
+    version='0.2.2',
     description='Crochet-based blocking API for Scrapy.',
     long_description=LONG_DESC,
     author='Rolando Espinoza La fuente',
