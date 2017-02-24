@@ -58,11 +58,8 @@ Example:
     items = scrapydo.crawl('http://example.com', callback)
 
     # Run an existing spider class.
-    items = scrapydo.run_spider(MySpider)
-
-    # Run an existing spider class with custom arguments.
-    formdata={'user': 'john', 'pass': 'secret'}
-    items = scrapydo.run_spider(MySpider(**formdata), **formdata)
+    spider_args = {'foo': 'bar'}
+    items = scrapydo.run_spider(MySpider, **spider_args)
 
 
 Available Functions
@@ -77,7 +74,7 @@ Available Functions
 ``scrapydo.crawl(url, callback, spider_cls=DefaultSpider, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT)``
     Crawls an URL with given callback and returns the scraped items.
 
-``scrapydo.run_spider(spider_cls, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT)``
+``scrapydo.run_spider(spider_cls, capture_items=True, return_crawler=False, settings=None, timeout=DEFAULT_TIMEOUT, **kwargs)``
     Runs a spider and returns the scraped items.
 
 ``highlight(code, lexer='html', formatter='html', output_wrapper=None)``

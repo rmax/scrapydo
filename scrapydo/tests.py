@@ -52,5 +52,5 @@ class APITest(SiteTest, TestCase):
 
     def test_run_spider(self):
         TestSpider = make_test_spider(self.url)
-        items = scrapydo.run_spider(TestSpider)
+        items = scrapydo.run_spider(TestSpider, name='test-spider')
         self.assertEqual(set(it['path'] for it in items), {'/text', '/html'})
