@@ -1,5 +1,6 @@
 import pprint
 import uuid
+import six
 
 try:
     import pygments
@@ -16,11 +17,11 @@ def highlight(code, lexer='html', formatter='html', output_wrapper=None):
     """Highlights given code using pygments."""
     if not pygments:
         raise TypeError("pygments module required")
-    if not isinstance(code, basestring):
+    if not isinstance(code, six.string_types):
         code = pprint.pformat(code)
-    if isinstance(lexer, basestring):
+    if isinstance(lexer, six.string_types):
         lexer = pygments.lexers.get_lexer_by_name(lexer)
-    if isinstance(formatter, basestring):
+    if isinstance(formatter, six.string_types):
         formatter = pygments.formatters.get_formatter_by_name(formatter)
         if formatter.name.lower() == 'html':
             formatter.full = True

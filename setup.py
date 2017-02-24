@@ -18,6 +18,7 @@ setup(
         'Scrapy>=1.0.0',
         'crochet>=1.4.0',
         'pygments',
+        'six',
     ],
     classifiers=[
         'Programming Language :: Python',

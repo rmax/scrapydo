@@ -1,5 +1,6 @@
 """Crochet-based blocking API for Scrapy."""
 import crochet
+import six
 
 from scrapy import signals
 from scrapy.crawler import Crawler
@@ -145,13 +146,11 @@ def _fetch_in_reactor(url, spider_cls=DefaultSpider, **kwargs):
     """
     def parse(self, response):
         self.response = response
-    req = Request(url) if isinstance(url, basestring) else url
+    req = Request(url) if isinstance(url, six.string_types) else url
     req.dont_filter = True
     req.meta['handle_httpstatus_all'] = True
     spider_cls = override_start_requests(spider_cls, [req], parse=parse)
     return _run_spider_in_reactor(spider_cls, **kwargs)
-
-
 
 
 def _crawl_in_reactor(url, callback, spider_cls=DefaultSpider, **kwargs):
@@ -248,7 +247,7 @@ def override_start_requests(spider_cls, start_urls, callback=None, **attrs):
     """
     def start_requests():
         for url in start_urls:
-            req = Request(url, dont_filter=True) if isinstance(url, basestring) else url
+            req = Request(url, dont_filter=True) if isinstance(url, six.string_types) else url
             if callback is not None:
                 req.callback = callback
             yield req
