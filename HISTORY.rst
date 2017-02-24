@@ -4,6 +4,10 @@ History
 
 .. comment:: bumpversion marker
 
+0.2.2 (2017-02-23)
+------------------
+* Removed ``conda install`` reference.
+
 0.2.1 (2017-02-23)
 ------------------
 * Added default settings.

@@ -16,11 +16,6 @@ Using ``pip``::
   pip install scrapydo
 
 
-Using ``conda``::
-
-  conda install -c https://conda.anaconda.org/rolando scrapydo
-
-
 Usage
 =====
 
