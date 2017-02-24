@@ -4,7 +4,7 @@ History
 
 .. comment:: bumpversion marker
 
-0.2.0 (2017-02-23)
+0.2.1 (2017-02-23)
 ------------------
 * Added default settings.
 * Allow ``fetch`` to accept a ``Request`` instance.
