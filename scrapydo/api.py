@@ -42,9 +42,9 @@ def fetch(url, **kwargs):
 
     Returns
     -------
-    out
-        By default, the scraped items. If ``return_crawler`` is ``True``,
-        returns the crawler instance.
+    out : Response or None
+        Returns a ``Response`` instance if the crawler is able to retrieve a
+        response, otherwise it returns ``None``.
 
     Raises
     ------
